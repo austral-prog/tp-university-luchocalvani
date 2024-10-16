@@ -3,46 +3,29 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CSVReader {
 
     private String filename;
-    private String line;
-    private HashMap<String, Student> studentMap = new HashMap<>();
-    private HashMap<String, Course> courseMap = new HashMap<>();
+    private List<String[]> allData = new ArrayList<>();
 
     public CSVReader(String filename) {
         this.filename = filename;
+    }
+    public void read(String delimiter){
         try {
             BufferedReader br = new BufferedReader(new FileReader(this.filename));
-            line = br.readLine();
-            while ((line = br.readLine())!= null) {
-                String[] data = line.split(",");
-                String classroom = data[0];
-                String subject = data[1];
-                String studentName = data[2];
-                String studentEmail = data[3];
-                String teacher = data[4];
-
-                Course course = courseMap.computeIfAbsent(subject, k -> new Course(subject));
-                course.addClassroom(classroom);
-                Student student = studentMap.computeIfAbsent(studentName, k -> new Student(studentName, studentEmail));
-                student.addCourse(course);
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(delimiter);
+                allData.add(data);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public List<Student> getStudentlist(){
-        List<Student> studentsList = new ArrayList<>();
-        studentsList.addAll(studentMap.values());
-        return studentsList;
-    }
-    public List<Course> getCourseslist(){
-        List<Course> courseList = new ArrayList<>();
-        courseList.addAll(courseMap.values());
-        return courseList;
+    public List<String[]> getAllData(){
+        return allData;
     }
 }

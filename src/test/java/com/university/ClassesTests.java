@@ -1,5 +1,7 @@
 package com.university;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClassesTests {
 
@@ -12,6 +14,7 @@ public class ClassesTests {
     Student student3 = new Student("Mati Miodo", "mMiodo@gmail.com");
 
     CSVReader csvReader = new CSVReader("src/main/resources/input.csv");
+    Creator creator = new Creator("src/main/resources/input.csv");
 
     @Test
     public void addClassroomTest() {
@@ -57,10 +60,22 @@ public class ClassesTests {
     }
     @Test
     public void getStudentListTest() {
-        assert csvReader.getStudentlist().size() == 400;
+        assert creator.getStudentlist().size() == 400;
     }
     @Test
     public void getCoursesListTest(){
-        assert csvReader.getCourseslist().size() == 20;
+        assert creator.getCourseslist().size() == 20;
+    }
+    @Test
+    public void CreatorTest(){
+        StudentSorter sorter = new StudentSorter((new Creator("src/main/resources/input.csv")).getStudentlist());
+        System.out.println(sorter.getOrderedStudents());
+    }
+    @Test
+    public void SolutionDataCreatorTest(){
+        Creator cr = new Creator("src/main/resources/input.csv");
+        System.out.println(cr.getStudentlist());
+        SolutionDataCreator sdc = new SolutionDataCreator(cr.getStudentlist());
+        System.out.println(sdc.getFileData());
     }
 }
