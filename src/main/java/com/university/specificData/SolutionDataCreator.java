@@ -1,4 +1,6 @@
-package com.university;
+package com.university.specificData;
+
+import com.university.mainObjects.Student;
 
 import java.util.ArrayList;
 import java.util.List;

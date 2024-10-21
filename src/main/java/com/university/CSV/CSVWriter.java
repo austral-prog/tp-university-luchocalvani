@@ -1,15 +1,15 @@
-package com.university;
+package com.university.CSV;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class CSVWritter {
+public class CSVWriter {
     String[] headers;
     String fileOut;
     List<String[]> data;
 
-    public CSVWritter(String[] headers, String fileOut, List<String[]> data) {
+    public CSVWriter(String[] headers, String fileOut, List<String[]> data) {
         this.headers = headers;
         this.fileOut = fileOut;
         this.data = data;

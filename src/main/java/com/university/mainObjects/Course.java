@@ -1,4 +1,4 @@
-package com.university;
+package com.university.mainObjects;
 import java.util.ArrayList;
 import java.util.List;
 

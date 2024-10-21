@@ -1,4 +1,4 @@
-package com.university;
+package com.university.CSV;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,4 +1,6 @@
-package com.university;
+package com.university.specificData;
+
+import com.university.mainObjects.Student;
 
 import java.util.Comparator;
 import java.util.List;
