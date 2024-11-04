@@ -7,13 +7,13 @@ public class Student {
     private String name;
     private String email;
     private HashMap<String, List<String>> courses;
-    private List<Evaluation> evaluations;
+    private HashMap<String, List<Evaluation>> evaluations;
 
     public Student(String name, String email){
         this.name = name;
         this.email = email;
         this.courses = new HashMap<>();
-        this.evaluations = new ArrayList<>();
+        this.evaluations = new HashMap<>();
     }
 
     public String getEmail(){
@@ -28,7 +28,7 @@ public class Student {
     public int getCoursesAmount(){
         return courses.size();
     }
-    public List<Evaluation> getEvaluations(){
+    public HashMap<String, List<Evaluation>> getEvaluations(){
         return evaluations;
     }
     public void addCourse(String subject, String classroom){
@@ -40,11 +40,9 @@ public class Student {
             courses.get(subject).add(classroom);
         }
     }
-    public void addEvaluation(Evaluation evaluation){
-        if (evaluation.getStudentName().equals(name)){
-            if (!evaluations.contains(evaluation)){
-                evaluations.add(evaluation);
-            }
+    public void addEvaluation(String subject, Evaluation evaluation){
+        if (evaluations.containsKey(subject)){
+            evaluations.get(subject).add(evaluation);
         }
     }
     @Override

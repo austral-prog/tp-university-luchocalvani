@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Evaluation {
-    private String uniqueKey;
-    private String studentName;
-    private String subject;
-    private String evaluationType;
-    private String evaluationName;
-    private List<Exercise> exercises;
+public abstract class Evaluation {
+    protected String studentName;
+    protected String subject;
+    protected String evaluationType;
+    protected String evaluationName;
+    protected List<Exercise> exercises;
+    protected Double finalGrade;
 
 
     public Evaluation(String studentName,String subject, String evaluationType, String evaluationName) {
@@ -18,7 +18,7 @@ public class Evaluation {
         this.evaluationType = evaluationType;
         this.evaluationName = evaluationName;
         this.exercises = new ArrayList<>();
-        this.uniqueKey = studentName +":"+ subject +":"+ evaluationType +":"+ evaluationName;
+        this.finalGrade = 0.0;
 
     }
     public void addExercises(Exercise exercise) {
@@ -39,6 +39,12 @@ public class Evaluation {
     public List<Exercise> getExercises() {
         return exercises;
     }
+    public abstract void calculateFinalGrade();
+
+    public Double getFinalGrade() {
+        return finalGrade;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Evaluation){

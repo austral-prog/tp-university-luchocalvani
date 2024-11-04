@@ -1,17 +1,17 @@
 package com.university.creators;
 import com.university.CSV.CSVReader;
-import com.university.mainObjects.Course;
+import com.university.evaluationType.FinalPracticalWork;
+import com.university.evaluationType.OralExam;
+import com.university.evaluationType.PracticalWork;
+import com.university.evaluationType.WrittenExam;
 import com.university.mainObjects.Evaluation;
 import com.university.mainObjects.Exercise;
-import com.university.mainObjects.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class Creator2 {
-    private static HashMap<String, Student> students = new HashMap<>();
     private static HashMap<String, Evaluation> evaluations = new HashMap<>();
 
     public Creator2(String fileIn){
@@ -26,20 +26,31 @@ public class Creator2 {
             String exerciseName = data[4];
             String grade = data[5];
 
-            Evaluation evaluation = evaluations.computeIfAbsent(studentName +":"+ subject +":"+ evaluationType +":"+ evaluationName, k-> new Evaluation(studentName, subject, evaluationType, evaluationName));
-
             Exercise exercise = new Exercise(exerciseName, grade);
-            evaluation.addExercises(exercise);
 
-            Student student = students.computeIfAbsent(studentName, k-> new Student(studentName, null));
-            if (!student.getEvaluations().contains(evaluation)){
-                student.addEvaluation(evaluation);
+            switch (evaluationType) {
+                case "WRITTEN_EXAM" -> {
+                    WrittenExam writtenExam = (WrittenExam) evaluations.computeIfAbsent(studentName + ":" + subject + ":" + evaluationType + ":" + evaluationName, k -> new WrittenExam(studentName, subject, evaluationType, evaluationName));
+                    writtenExam.addExercises(exercise);
+                }
+                case "FINAL_PRACTICAL_WORK" -> {
+                    FinalPracticalWork finalPracticalWork = (FinalPracticalWork) evaluations.computeIfAbsent(studentName + ":" + subject + ":" + evaluationType + ":" + evaluationName, k -> new FinalPracticalWork(studentName, subject, evaluationType, evaluationName));
+                    finalPracticalWork.addExercises(exercise);
+                }
+                case "PRACTICAL_WORK" -> {
+                    PracticalWork practicalWork = (PracticalWork) evaluations.computeIfAbsent(studentName + ":" + subject + ":" + evaluationType + ":" + evaluationName, k -> new PracticalWork(studentName, subject, evaluationType, evaluationName));
+                    practicalWork.addExercises(exercise);
+                }
+                case "ORAL_EXAM" -> {
+                    OralExam oralExam = (OralExam) evaluations.computeIfAbsent(studentName + ":" + subject + ":" + evaluationType + ":" + evaluationName, k -> new OralExam(studentName, subject, evaluationType, evaluationName));
+                    oralExam.addExercises(exercise);
+                }
             }
         }
     }
-    public List<Student> getStudentList(){
-        List<Student> studentsList = new ArrayList<>();
-        studentsList.addAll(students.values());
-        return studentsList;
+    public List<Evaluation> getEvaluationsList(){
+        List<Evaluation> evaluationsList = new ArrayList<>();
+        evaluationsList.addAll(evaluations.values());
+        return evaluationsList;
     }
 }
