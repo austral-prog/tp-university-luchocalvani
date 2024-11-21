@@ -51,20 +51,20 @@ public class University {
         }
         return null;
     }
-    public Course getCourse(String subject){
-        for (Course course : coursesList){
-            if (course.getSubject().equals(subject)){
-                return course;
-            }
-        }
-        return null;
-    }
-    public Evaluation getEvaluation(String studentName, String subject, String evaluationType, String evaluationName){
-        for (Evaluation evaluation : evaluationsList){
-            if (evaluation.getStudentName().equals(studentName) && evaluation.getSubject().equals(subject) && evaluation.getEvaluationType().equals(evaluationType)){
-                return evaluation;
-            }
-        }
-        return null;
-    }
+//    public Course getCourse(String subject){
+//        for (Course course : coursesList){
+//            if (course.getSubject().equals(subject)){
+//                return course;
+//            }
+//        }
+//        return null;
+//    }
+//    public Evaluation getEvaluation(String studentName, String subject, String evaluationType, String evaluationName){
+//        for (Evaluation evaluation : evaluationsList){
+//            if (evaluation.getStudentName().equals(studentName) && evaluation.getSubject().equals(subject) && evaluation.getEvaluationType().equals(evaluationType)){
+//                return evaluation;
+//            }
+//        }
+//        return null;
+//    }
 }

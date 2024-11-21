@@ -1,13 +1,20 @@
 package com.university;
-import com.university.CSV.CSVReader;
+import com.university.creators.CriteriasCreator;
+import com.university.creators.EvaluationsCreator;
 import com.university.creators.StudentsCoursesCreator;
 import com.university.mainObjects.Course;
 import com.university.mainObjects.Student;
+import com.university.mainObjects.University;
 import com.university.specificData.DataCreators.Solution1DataCreator;
+import com.university.specificData.DataCreators.Solution2DataCreator;
+import com.university.specificData.DataCreators.Solution3DataCreator;
+import com.university.specificData.Sorters.EvaluationSorter;
 import com.university.specificData.Sorters.StudentSorter;
 import org.junit.jupiter.api.Test;
 
 public class ClassesTests {
+
+    University university = new University();
 
     Course course1 = new Course("Math");
     Course course2 = new Course("Prog");
@@ -17,8 +24,13 @@ public class ClassesTests {
     Student student2 = new Student("Seba Igles", "sIgles@gmail.com");
     Student student3 = new Student("Mati Miodo", "mMiodo@gmail.com");
 
-    CSVReader csvReader = new CSVReader("src/main/resources/input.csv");
     StudentsCoursesCreator studentsCoursesCreator = new StudentsCoursesCreator("src/main/resources/input.csv");
+    EvaluationsCreator evaluationsCreator = new EvaluationsCreator("src/main/resources/input_2.csv");
+    CriteriasCreator criteriasCreator = new CriteriasCreator("src/main/resources/input_3.csv");
+    StudentSorter ss = new StudentSorter(studentsCoursesCreator.getStudentlist());
+    EvaluationSorter es = new EvaluationSorter(evaluationsCreator.getEvaluationsList());
+    Solution1DataCreator sdc1 = new Solution1DataCreator(ss.getOrderedItems());
+    Solution2DataCreator sdc2 = new Solution2DataCreator(es.getOrderedItems());
 
     @Test
     public void addClassroomTest() {
@@ -42,56 +54,91 @@ public class ClassesTests {
         assert course2.getSubject().equals("Prog");
         assert course3.getSubject().equals("Biology");
     }
-//    @Test
-//    public void addCourseTest() {
-//        student1.addCourse(course1.getSubject(), course2());
-//        student1.addCourse(course1);
-//        student2.addCourse(course2);
-//        student3.addCourse(course2);
-//        student3.addCourse(course3);
-//
-//        assert student1.getCourses().contains(course1);
-//        assert student1.getCoursesAmount() == 1;
-//        assert !student2.getCourses().contains(course1);
-//        assert student2.getCoursesAmount() == 1;
-//        assert student3.getCoursesAmount() == 2;
-//    }
+
     @Test
     public void getNameTest(){
         assert student1.getName().equals("Juan Longo");
         assert student2.getName().equals("Seba Igles");
         assert student3.getName().equals("Mati Miodo");
     }
-    @Test
-    public void getStudentListTest() {
-        assert studentsCoursesCreator.getStudentlist().size() == 400;
-    }
-//    @Test
-//
-//    public void getCoursesListTest(){
-//        assert creator1.getCourseslist().size() == 20;
-//    }
-//    @Test
-//    public void CreatorTest(){
-//        StudentSorter sorter = new StudentSorter((new StudentsCoursesCreator("src/main/resources/input.csv")).getStudentlist());
-//        System.out.println(sorter.getOrderedItems());
-//    }
-//    @Test
-//    public void SolutionDataCreatorTest(){
-//        StudentsCoursesCreator cr = new StudentsCoursesCreator("src/main/resources/input.csv");
-//        System.out.println(cr.getStudentlist());
-//        Solution1DataCreator sdc = new Solution1DataCreator(cr.getStudentlist());
-//        System.out.println(sdc.getFileData());
-//    }
-//    @Test
-//    public void Solution2DataCreatorTest() {
-//        Creator2 cr = new Creator2("src/main/resources/input_2.csv");
-//        System.out.println(cr.getStudentList());
-//        Solution2DataCreator sdc = new Solution2DataCreator(cr.getStudentList());
-//        System.out.println(sdc.getFileData().size());
-//    }
-    @Test
-    public void ApproveTest(){
 
+    @Test
+    public void StudentsCreatorTest(){
+        assert studentsCoursesCreator.getStudentlist().get(1).getName().equals("Sam Green");
+    }
+
+    @Test
+    public void CoursesCreatorTest(){
+        assert studentsCoursesCreator.getCoursesList().get(1).getSubject().equals("Economics");
+    }
+
+    @Test
+    public void EvaluationCreatorTest(){
+        assert evaluationsCreator.getEvaluationsList().get(1).getSubject().equals("Geography");
+        assert evaluationsCreator.getEvaluationsList().get(1).getEvaluationName().equals("TP3");
+        assert evaluationsCreator.getEvaluationsList().get(1).getStudentName().equals("Hank Yellow");
+        assert evaluationsCreator.getEvaluationsList().get(1).getEvaluationType().equals("PRACTICAL_WORK");
+    }
+
+    @Test
+    public void CriteriaCreatorTest(){
+        assert criteriasCreator.getCriteriasList().get(1).getSubject().equals("Geography");
+        assert criteriasCreator.getCriteriasList().get(1).getEvaluationNames().get(1).equals("TP4");
+    }
+
+    @Test
+    public void StudentsSorterTest(){
+        assert ss.getOrderedItems().get(1).getName().equals("Alice Beige");
+    }
+
+    @Test
+    public void EvaluationSorterTest(){
+        assert es.getOrderedItems().get(1).getSubject().equals("Art");
+    }
+
+    @Test
+    public void Solution1DataCreatorTest(){
+        assert sdc1.getFileData().get(1)[0].equals("Alice Beige");
+    }
+
+    @Test
+    public void Solution2DataCreatorTest(){
+        assert sdc2.getFileData().get(1)[0].equals("Art");
+    }
+
+    @Test
+    public void SetAndGetStudentsListToUniversityTest(){
+        university.setStudentsList(ss.getOrderedItems());
+        assert university.getStudentsList().get(1).getName().equals("Alice Beige");
+    }
+
+    @Test
+    public void SetAndGetCoursesListToUniversityTest(){
+        university.setCoursesList(studentsCoursesCreator.getCoursesList());
+        assert university.getCoursesList().get(1).getSubject().equals("Economics");
+    }
+
+    @Test
+    public void SetAndGetEvaluationsListToUniversityTest(){
+        university.setEvaluationsList(es.getOrderedItems());
+        assert university.getEvaluationsList().get(1).getSubject().equals("Art");
+    }
+
+    @Test
+    public void SetAndGetCriteriaListToUniversityTest(){
+        university.setCriteriasList(criteriasCreator.getCriteriasList());
+        assert university.getCriteriasList().get(1).getSubject().equals("Geography");
+    }
+
+    @Test
+    public void Solution3DataCreatorTest(){
+        University uni = new University();
+        uni.setCoursesList(studentsCoursesCreator.getCoursesList());
+        uni.setStudentsList(ss.getOrderedItems());
+        uni.setCriteriasList(criteriasCreator.getCriteriasList());
+        uni.setEvaluationsList(es.getOrderedItems());
+        Solution3DataCreator sdc3 = new Solution3DataCreator(uni);
+        assert sdc3.getFileData().get(1)[1].equals("Alice Beige");
+        assert sdc3.getFileData().get(1)[3].equals("Failed");
     }
 }

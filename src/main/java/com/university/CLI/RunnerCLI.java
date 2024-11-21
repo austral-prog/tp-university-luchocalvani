@@ -1,6 +1,5 @@
-package com.university;
+package com.university.CLI;
 
-import com.university.CLI.CLI;
 import com.university.CLI.CRUDRepositories.*;
 import com.university.mainObjects.Course;
 import com.university.mainObjects.Student;

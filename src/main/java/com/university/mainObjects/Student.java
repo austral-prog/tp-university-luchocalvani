@@ -21,21 +21,14 @@ public class Student implements Entity {
         this.evaluations = new HashMap<>();
     }
 
-    public String getEmail(){
-        return email;
-    }
     public String getName(){
         return name;
     }
-    public HashMap<String, List<String>> getCourses(){
-        return courses;
-    }
+
     public int getCoursesAmount(){
         return courses.size();
     }
-    public HashMap<String, List<Evaluation>> getEvaluations(){
-        return evaluations;
-    }
+
     public void addCourse(String subject, String classroom){
         if(!courses.containsKey(subject)){
             courses.put(subject, new ArrayList<>());
@@ -91,7 +84,4 @@ public class Student implements Entity {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

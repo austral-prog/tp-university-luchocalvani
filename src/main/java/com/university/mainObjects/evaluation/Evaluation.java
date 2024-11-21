@@ -40,9 +40,6 @@ public abstract class Evaluation implements Entity {
     public String getEvaluationName() {
         return evaluationName;
     }
-    public List<Exercise> getExercises() {
-        return exercises;
-    }
     public abstract void calculateFinalGrade();
 
     public Double getFinalGrade() {

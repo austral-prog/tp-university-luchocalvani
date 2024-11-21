@@ -11,9 +11,9 @@ public class Exercise {
         this.grade = grade;
     }
 
-    public String getExerciseName() {
-        return exerciseName;
-    }
+//    public String getExerciseName() {
+//        return exerciseName;
+//    }
     public String getGrade() {
         return grade;
     }

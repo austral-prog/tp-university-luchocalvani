@@ -30,13 +30,6 @@ public class Course implements Entity {
     public int getClassroomsAmount() {
         return classrooms.size();
     }
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public List<Evaluation> getEvaluations() {
-        return evaluations;
-    }
 
     public void setSubject(String subject) {
         this.subject = subject;
@@ -51,19 +44,6 @@ public class Course implements Entity {
         if (!students.contains(student)){
             students.add(student);
         }
-    }
-    public void addEvaluation(Evaluation evaluation) {
-        if (!evaluations.contains(evaluation)){
-            evaluations.add(evaluation);
-        }
-    }
-    public Student getStudent(String studentName) {
-        for (Student student : students){
-            if (student.getName().equals(studentName)){
-                return student;
-            }
-        }
-        return null;
     }
 
     @Override
@@ -87,9 +67,5 @@ public class Course implements Entity {
     @Override
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setName(String subject){
-        this.subject = subject;
     }
 }

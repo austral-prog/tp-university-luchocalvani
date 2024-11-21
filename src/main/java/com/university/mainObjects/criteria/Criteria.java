@@ -6,8 +6,6 @@ import java.util.List;
 
 public abstract class Criteria {
 
-    //separa si son tps, tp final o examen final, parciales
-
     protected String subject;
     protected String criteriaType;
     protected String criteriaValue;
@@ -22,12 +20,12 @@ public abstract class Criteria {
     public String getSubject() {
         return subject;
     }
-    public String getCriteriaType() {
-        return criteriaType;
-    }
-    public String getCriteriaValue() {
-        return criteriaValue;
-    }
+//    public String getCriteriaType() {
+//        return criteriaType;
+//    }
+//    public String getCriteriaValue() {
+//        return criteriaValue;
+//    }
     public List<String> getEvaluationNames() {
         return evaluationNames;
     }
