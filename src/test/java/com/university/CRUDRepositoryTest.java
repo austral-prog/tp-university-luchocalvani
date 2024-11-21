@@ -1,5 +1,8 @@
 package com.university;
 
+import com.university.CLI.CRUDRepositories.CRUDRepository;
+import com.university.CLI.Entity;
+import com.university.CLI.exceptions.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,8 +87,13 @@ class CRUDRepositoryTest {
 
             // Delete the entity (assuming an ID of 1)
             crudRepository.delete(1);
-            Object deletedEntity = crudRepository.read(1);
-            assertNull(deletedEntity, "Deleted entity should no longer exist");
+            try {
+                Object deletedEntity = crudRepository.read(1);
+                fail( "My method didn't throw when I expected it to" );
+            } catch (EntityNotFoundException e) {
+
+            }
+
         }
     }
 

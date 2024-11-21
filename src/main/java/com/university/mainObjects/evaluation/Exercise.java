@@ -1,4 +1,4 @@
-package com.university.mainObjects;
+package com.university.mainObjects.evaluation;
 
 public class Exercise {
 

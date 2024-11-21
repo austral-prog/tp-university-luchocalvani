@@ -1,15 +1,19 @@
-package com.university.mainObjects;
+package com.university.mainObjects.evaluation;
+
+import com.university.CLI.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Evaluation {
+public abstract class Evaluation implements Entity {
     protected String studentName;
     protected String subject;
     protected String evaluationType;
     protected String evaluationName;
     protected List<Exercise> exercises;
     protected Double finalGrade;
+    protected int id;
 
 
     public Evaluation(String studentName,String subject, String evaluationType, String evaluationName) {
@@ -49,7 +53,13 @@ public abstract class Evaluation {
     public boolean equals(Object obj) {
         if (obj instanceof Evaluation){
             if (((Evaluation) obj).getEvaluationName().equals(evaluationName)){
-                return (((Evaluation) obj).getSubject().equals(subject));
+                if (((Evaluation) obj).getEvaluationType().equals(evaluationType)){
+                    if (((Evaluation) obj).getStudentName().equals(studentName)){
+                        if (((Evaluation) obj).getSubject().equals(subject)){
+                            return true;
+                        }
+                    }
+                }
             }
         }
         return false;

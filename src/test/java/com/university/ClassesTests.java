@@ -1,12 +1,10 @@
 package com.university;
 import com.university.CSV.CSVReader;
-import com.university.creators.Creator1;
-import com.university.creators.Creator2;
+import com.university.creators.StudentsCoursesCreator;
 import com.university.mainObjects.Course;
 import com.university.mainObjects.Student;
-import com.university.specificData.Solution2DataCreator;
-import com.university.specificData.SolutionDataCreator;
-import com.university.specificData.StudentSorter;
+import com.university.specificData.DataCreators.Solution1DataCreator;
+import com.university.specificData.Sorters.StudentSorter;
 import org.junit.jupiter.api.Test;
 
 public class ClassesTests {
@@ -20,7 +18,7 @@ public class ClassesTests {
     Student student3 = new Student("Mati Miodo", "mMiodo@gmail.com");
 
     CSVReader csvReader = new CSVReader("src/main/resources/input.csv");
-    Creator1 creator1 = new Creator1("src/main/resources/input.csv");
+    StudentsCoursesCreator studentsCoursesCreator = new StudentsCoursesCreator("src/main/resources/input.csv");
 
     @Test
     public void addClassroomTest() {
@@ -66,29 +64,34 @@ public class ClassesTests {
     }
     @Test
     public void getStudentListTest() {
-        assert creator1.getStudentlist().size() == 400;
+        assert studentsCoursesCreator.getStudentlist().size() == 400;
     }
 //    @Test
+//
 //    public void getCoursesListTest(){
 //        assert creator1.getCourseslist().size() == 20;
 //    }
+//    @Test
+//    public void CreatorTest(){
+//        StudentSorter sorter = new StudentSorter((new StudentsCoursesCreator("src/main/resources/input.csv")).getStudentlist());
+//        System.out.println(sorter.getOrderedItems());
+//    }
+//    @Test
+//    public void SolutionDataCreatorTest(){
+//        StudentsCoursesCreator cr = new StudentsCoursesCreator("src/main/resources/input.csv");
+//        System.out.println(cr.getStudentlist());
+//        Solution1DataCreator sdc = new Solution1DataCreator(cr.getStudentlist());
+//        System.out.println(sdc.getFileData());
+//    }
+//    @Test
+//    public void Solution2DataCreatorTest() {
+//        Creator2 cr = new Creator2("src/main/resources/input_2.csv");
+//        System.out.println(cr.getStudentList());
+//        Solution2DataCreator sdc = new Solution2DataCreator(cr.getStudentList());
+//        System.out.println(sdc.getFileData().size());
+//    }
     @Test
-    public void CreatorTest(){
-        StudentSorter sorter = new StudentSorter((new Creator1("src/main/resources/input.csv")).getStudentlist());
-        System.out.println(sorter.getOrderedStudents());
-    }
-    @Test
-    public void SolutionDataCreatorTest(){
-        Creator1 cr = new Creator1("src/main/resources/input.csv");
-        System.out.println(cr.getStudentlist());
-        SolutionDataCreator sdc = new SolutionDataCreator(cr.getStudentlist());
-        System.out.println(sdc.getFileData());
-    }
-    @Test
-    public void Solution2DataCreatorTest() {
-        Creator2 cr = new Creator2("src/main/resources/input_2.csv");
-        System.out.println(cr.getStudentList());
-        Solution2DataCreator sdc = new Solution2DataCreator(cr.getStudentList());
-        System.out.println(sdc.getFileData().size());
+    public void ApproveTest(){
+
     }
 }

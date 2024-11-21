@@ -1,7 +1,4 @@
-package com.university.evaluationType;
-
-import com.university.mainObjects.Evaluation;
-import com.university.mainObjects.Exercise;
+package com.university.mainObjects.evaluation;
 
 public class FinalPracticalWork extends Evaluation {
     public FinalPracticalWork(String studentName, String subject, String evaluationType, String evaluationName) {
@@ -13,5 +10,15 @@ public class FinalPracticalWork extends Evaluation {
         for (Exercise exercise: exercises) {
             finalGrade += Double.parseDouble(exercise.getGrade());
         }
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }

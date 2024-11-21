@@ -1,8 +1,7 @@
-package com.university.specificData;
+package com.university.specificData.DataCreators;
 
-import com.university.mainObjects.Evaluation;
-import com.university.mainObjects.Exercise;
-import com.university.mainObjects.Student;
+import com.university.mainObjects.evaluation.Evaluation;
+import com.university.specificData.Sorters.EvaluationSorter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ public class Solution2DataCreator {
 
     public Solution2DataCreator(List<Evaluation> evaluations){
         EvaluationSorter evaluationSorter = new EvaluationSorter(evaluations);
-        List<Evaluation> orderedEvaluations = evaluationSorter.getOrderedEvaluations();
+        List<Evaluation> orderedEvaluations = evaluationSorter.getOrderedItems();
         for (Evaluation evaluation : orderedEvaluations){
             evaluation.calculateFinalGrade();
             String[] row = {evaluation.getSubject(), evaluation.getEvaluationName(), evaluation.getStudentName(), String.valueOf(evaluation.getFinalGrade())};

@@ -1,4 +1,6 @@
-package com.university;
+package com.university.CLI.CRUDRepositories;
+
+import com.university.CLI.Entity;
 
 public interface CRUDRepository<T extends Entity> {
     /**

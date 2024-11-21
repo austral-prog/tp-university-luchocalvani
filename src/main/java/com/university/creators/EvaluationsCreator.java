@@ -1,20 +1,20 @@
 package com.university.creators;
 import com.university.CSV.CSVReader;
-import com.university.evaluationType.FinalPracticalWork;
-import com.university.evaluationType.OralExam;
-import com.university.evaluationType.PracticalWork;
-import com.university.evaluationType.WrittenExam;
-import com.university.mainObjects.Evaluation;
-import com.university.mainObjects.Exercise;
+import com.university.mainObjects.evaluation.FinalPracticalWork;
+import com.university.mainObjects.evaluation.OralExam;
+import com.university.mainObjects.evaluation.PracticalWork;
+import com.university.mainObjects.evaluation.WrittenExam;
+import com.university.mainObjects.evaluation.Evaluation;
+import com.university.mainObjects.evaluation.Exercise;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Creator2 {
+public class EvaluationsCreator {
     private static HashMap<String, Evaluation> evaluations = new HashMap<>();
 
-    public Creator2(String fileIn){
+    public EvaluationsCreator(String fileIn){
         CSVReader csv = new CSVReader(fileIn);
         csv.read(",");
         List<String[]> allData = csv.getAllData();

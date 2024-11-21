@@ -1,6 +1,4 @@
-package com.university.evaluationType;
-
-import com.university.mainObjects.Evaluation;
+package com.university.mainObjects.evaluation;
 
 public class OralExam extends Evaluation {
     public OralExam(String studentName, String subject, String evaluationType, String evaluationName) {
@@ -10,5 +8,15 @@ public class OralExam extends Evaluation {
     @Override
     public void calculateFinalGrade() {
         finalGrade = Double.parseDouble(exercises.getFirst().getGrade());
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+
     }
 }

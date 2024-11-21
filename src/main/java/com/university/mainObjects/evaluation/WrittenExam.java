@@ -1,7 +1,4 @@
-package com.university.evaluationType;
-
-import com.university.mainObjects.Evaluation;
-import com.university.mainObjects.Exercise;
+package com.university.mainObjects.evaluation;
 
 public class WrittenExam extends Evaluation {
 
@@ -18,5 +15,15 @@ public class WrittenExam extends Evaluation {
             finalGrade += Double.parseDouble(exercise.getGrade());
         }
         finalGrade = finalGrade/i;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }
